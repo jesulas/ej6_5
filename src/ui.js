@@ -25,3 +25,29 @@ export function dameURLCarta(carta){
           console.log(carta);
   }
   }
+
+export function revisarPartida(){
+    if(partida.puntosTotales === 7.5){
+      alert("Has ganado la partida.")
+     }
+     if(partida.puntosTotales > 7.5){
+      alert("Has perdido la partida")
+     }
+     if (partida.puntosTotales < 4){
+       alert("Has sido muy conservador");
+     } 
+     if ((partida.puntosTotales >= 4) && (partida.puntosTotales <= 5)) {
+       alert("Te ha entrado el canguelo eh?");
+     }
+     if ((partida.puntosTotales >5) && (partida.puntosTotales < 7.5)){
+       alert("Casi casi...")   
+     }
+}
+
+
+  //Tiene que irse a UI?
+  export function reiniciar(){
+    actualizarPuntosTotales(0);
+    actualizarText();
+    mostrarURLCarta("");
+  }

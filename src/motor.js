@@ -1,6 +1,30 @@
-import{ modelo }from "./modelo.js";
-import { dameURLCarta } from "./ui";
-window.onload = function() {
+import{ partida
+ }from "./modelo";
+import { dameURLCarta,
+          revisarPartida,
+          reiniciar
+ } from "./ui";
+
+ document.addEventListener("DOMContentLoaded", (event) => {
+  cargarPartida();
+  })
+  
+  const cargarPartida = () => {
+  const botonRobarCarta = document.getElementById("robarCarta");
+  if ((botonRobarCarta !== null && botonRobarCarta !== undefined)){
+    botonRobarCarta.addEventListener("click", robarCarta)
+    }
+  const botonPlantarJuego = document.getElementById("plantarJuego");
+  if ((botonPlantarJuego !== null && botonPlantarJuego !== undefined)){
+    botonPlantarJuego.addEventListener("click", plantado)
+  }
+  const botonReiniciar = document.getElementById("reiniciar");
+  if ((botonReiniciar !== null && botonReiniciar !== undefined)){
+    botonReiniciar.addEventListener("click", reiniciar)
+  }
+  }
+  
+
 function numeroAleatorio(){
     return (Math.floor(Math.random()*(10)))
 }
@@ -46,35 +70,6 @@ function actualizarPuntosTotales(nuevosPuntos){
     }
 }
 
-function revisarPartida(){
-    if(partida.puntosTotales === 7.5){
-      alert("Has ganado la partida.")
-     }
-     if(partida.puntosTotales > 7.5){
-      alert("Has perdido la partida")
-     }
-     if (partida.puntosTotales < 4){
-       alert("Has sido muy conservador");
-     } 
-     if ((partida.puntosTotales >= 4) && (partida.puntosTotales <= 5)) {
-       alert("Te ha entrado el canguelo eh?");
-     }
-     if ((partida.puntosTotales >5) && (partida.puntosTotales < 7.5)){
-       alert("Casi casi...")   
-     }
-}
-
-function reiniciar(){
-    partida.puntosTotales = 0;
-    const scoreB = document.getElementById("scoreboard");
-    if (scoreB !== null && scoreB !== undefined){ 
-      scoreB.textContent = partida.puntosTotales;
-    }
-    const elementoImagen = document.getElementById("img");
-    if (elementoImagen !== null && elementoImagen !== undefined){
-      elementoImagen.src = "";
-    }
-}
 
 function robarCarta(){
     const numeroRandom = numeroAleatorio();
@@ -89,5 +84,4 @@ function robarCarta(){
 
 function plantado(){
     revisarPartida()
-}
 }
