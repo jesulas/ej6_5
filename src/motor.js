@@ -2,7 +2,9 @@ import{ partida
  }from "./modelo";
 import { dameURLCarta,
           revisarPartida,
-          reiniciar
+          mostrarURLCarta,
+          reiniciar,
+          actualizarText
  } from "./ui";
 
  document.addEventListener("DOMContentLoaded", (event) => {
@@ -39,13 +41,6 @@ function dameCarta(numeroAleatorio){
     return numeroAleatorio;
   }
 
-function mostrarURLCarta(urlCarta){
-    const elementoImagen = document.getElementById("img");
-
-    if (elementoImagen !== null && elementoImagen !== undefined){
-      elementoImagen.src = urlCarta;
-    }
-}
 function obtenerPuntosCarta(carta){
     if (carta > 7){
       return 0.5;
@@ -58,28 +53,21 @@ function sumarPuntos(puntos){
     return (partida.puntosTotales + puntos);
 }
 
-function actualizarPuntosTotales(nuevosPuntos){
-    partida.puntosTotales = nuevosPuntos;
-
-      
-    const scoreB = document.getElementById("scoreboard");
-    
-
-    if (scoreB !== null && scoreB !== undefined){ 
-      scoreB.textContent = partida.puntosTotales;
-    }
+export function actualizarPuntosTotales(nuevosPuntos){
+  partida.puntosTotales = nuevosPuntos
 }
-
 
 function robarCarta(){
     const numeroRandom = numeroAleatorio();
-    console.log(numeroRandom)
     const carta = dameCarta(numeroRandom);
     const urlCarta = dameURLCarta(carta);
-    mostrarURLCarta(urlCarta);
     const puntosCarta = obtenerPuntosCarta(carta);
     const puntosSumados = sumarPuntos(puntosCarta);
     actualizarPuntosTotales(puntosSumados);
+    mostrarURLCarta(urlCarta);
+    actualizarText;
+    
+    
 }
 
 function plantado(){

@@ -1,3 +1,6 @@
+import{ partida
+}from "./modelo";
+import {actualizarPuntosTotales} from "./motor.js";
 export function dameURLCarta(carta){
     switch(carta){
       case 1:
@@ -44,6 +47,22 @@ export function revisarPartida(){
      }
 }
 
+export function mostrarURLCarta(urlCarta){
+  const elementoImagen = document.getElementById("img");
+
+  if (elementoImagen !== null && elementoImagen !== undefined){
+    elementoImagen.src = urlCarta;
+  }
+}
+
+export function actualizarText(){
+  const scoreB = document.getElementById("scoreboard");
+    
+
+    if (scoreB !== null && scoreB !== undefined){   
+      scoreB.textContent = partida.puntosTotales;
+    }
+}
 
   //Tiene que irse a UI?
   export function reiniciar(){
