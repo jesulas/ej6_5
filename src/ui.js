@@ -1,6 +1,5 @@
 import{ partida
 }from "./modelo";
-import {actualizarPuntosTotales} from "./motor.js";
 export function dameURLCarta(carta){
     switch(carta){
       case 1:
@@ -53,6 +52,12 @@ export function mostrarURLCarta(urlCarta){
   if (elementoImagen !== null && elementoImagen !== undefined){
     elementoImagen.src = urlCarta;
   }
+}
+
+export function actualizarPuntosTotales(nuevosPuntos){
+  partida.puntosTotales = nuevosPuntos
+  console.log("Puntos actuales al añadir.")
+  console.log(partida.puntosTotales)
 }
 
 export function actualizarText(){

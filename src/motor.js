@@ -4,6 +4,7 @@ import { dameURLCarta,
           revisarPartida,
           mostrarURLCarta,
           reiniciar,
+          actualizarPuntosTotales,
           actualizarText
  } from "./ui";
 
@@ -48,14 +49,11 @@ function obtenerPuntosCarta(carta){
     return carta;
 }
 function sumarPuntos(puntos){
-    console.log("Puntos actuales")
+    console.log("Puntos actuales al sumar.")
     console.log(partida.puntosTotales)
     return (partida.puntosTotales + puntos);
 }
 
-export function actualizarPuntosTotales(nuevosPuntos){
-  partida.puntosTotales = nuevosPuntos
-}
 
 function robarCarta(){
     const numeroRandom = numeroAleatorio();
@@ -65,7 +63,7 @@ function robarCarta(){
     const puntosSumados = sumarPuntos(puntosCarta);
     actualizarPuntosTotales(puntosSumados);
     mostrarURLCarta(urlCarta);
-    actualizarText;
+    actualizarText();
     
     
 }
