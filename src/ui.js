@@ -1,6 +1,14 @@
 import{ partida
 }from "./modelo";
-export function dameURLCarta(carta){
+
+import {
+  numeroAleatorio,
+  dameCarta,
+  obtenerPuntosCarta,
+  sumarPuntos
+} from "./motor";
+
+function dameURLCarta(carta){
     switch(carta){
       case 1:
           return ("https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg") 
@@ -28,7 +36,11 @@ export function dameURLCarta(carta){
   }
   }
 
-export function revisarPartida(){
+document.addEventListener("DOMContentLoaded", (event) => {
+  cargarPartida();
+})
+
+function revisarPartida(){
     if(partida.puntosTotales === 7.5){
       alert("Has ganado la partida.")
      }
@@ -46,7 +58,7 @@ export function revisarPartida(){
      }
 }
 
-export function mostrarURLCarta(urlCarta){
+function mostrarURLCarta(urlCarta){
   const elementoImagen = document.getElementById("img");
 
   if (elementoImagen !== null && elementoImagen !== undefined){
@@ -54,13 +66,13 @@ export function mostrarURLCarta(urlCarta){
   }
 }
 
-export function actualizarPuntosTotales(nuevosPuntos){
+function actualizarPuntosTotales(nuevosPuntos){
   partida.puntosTotales = nuevosPuntos
   console.log("Puntos actuales al añadir.")
   console.log(partida.puntosTotales)
 }
 
-export function actualizarText(){
+function actualizarText(){
   const scoreB = document.getElementById("scoreboard");
     
 
@@ -69,9 +81,40 @@ export function actualizarText(){
     }
 }
 
-  //Tiene que irse a UI?
-  export function reiniciar(){
+function reiniciar(){
     actualizarPuntosTotales(0);
     actualizarText();
     mostrarURLCarta("");
+}
+
+export function robarCarta(){
+      const numeroRandom = numeroAleatorio();
+      const carta = dameCarta(numeroRandom);
+      const urlCarta = dameURLCarta(carta);
+      const puntosCarta = obtenerPuntosCarta(carta);
+      const puntosSumados = sumarPuntos(puntosCarta);
+      actualizarPuntosTotales(puntosSumados);
+      mostrarURLCarta(urlCarta);
+      actualizarText();
+}
+  
+
+
+export const cargarPartida = () => {
+  const botonRobarCarta = document.getElementById("robarCarta");
+  if ((botonRobarCarta !== null && botonRobarCarta !== undefined)){
+    botonRobarCarta.addEventListener("click", robarCarta)
+    }
+  const botonPlantarJuego = document.getElementById("plantarJuego");
+  if ((botonPlantarJuego !== null && botonPlantarJuego !== undefined)){
+    botonPlantarJuego.addEventListener("click", plantado)
   }
+  const botonReiniciar = document.getElementById("reiniciar");
+  if ((botonReiniciar !== null && botonReiniciar !== undefined)){
+    botonReiniciar.addEventListener("click", reiniciar)
+  }
+  }  
+  
+export function plantado(){
+    revisarPartida()
+}
